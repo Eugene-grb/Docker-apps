@@ -1,0 +1,55 @@
+version: '3.5'
+
+# Postgres and pgAdmin
+# !! default port 5051 - postgres
+# !! default port 5050 - pgAdmin
+
+# pgAdmin - add server:
+# General/Name: postgres_container
+# Connection/Host name: postgres
+# Connection/Port: 5432 - because use postgres docker network
+# Connection/Main. database: postgres
+# Connection/Username: postgres
+# Connection/Password: postgres
+
+# !! Use port 5051 to access the database from outside
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres:15.1
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5051:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4:6.19
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    networks:
+      - postgres
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+  
+ 
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:
