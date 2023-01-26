@@ -1,0 +1,64 @@
+{
+    "firefox": {
+        "default": "109.0",
+        "versions": {
+            "109.0": {
+                "image": "selenoid/firefox:109.0",
+                "tmpfs": { "/tmp": "size=512m" },
+                "mem": "512m",
+                "env": [
+                    "LANG=ru_RU.UTF-8",
+                    "LANGUAGE=ru:en",
+                    "LC_ALL=ru_RU.UTF-8"
+                ],
+                "port": "4444",
+                "path": "/wd/hub"
+            }
+        },
+        "selenoid:options": {
+            "screenResolution": "1920x1080x24"
+        }
+    },
+
+    "chrome": {
+        "default": "109.0",
+        "versions": {
+            "109.0": {
+                "image": "selenoid/chrome:109.0",
+                "tmpfs": { "/tmp": "size=512m" },
+                "mem": "512m",
+                "env": [
+                    "LANG=ru_RU.UTF-8",
+                    "LANGUAGE=ru:en",
+                    "LC_ALL=ru_RU.UTF-8"
+                ],
+                "port": "4444",
+                "path": "/wd/hub"
+            }
+        },
+        "selenoid:options": {
+            "screenResolution": "1920x1080x24"
+        }
+    },
+
+    "edge": {
+        "default": "109.0",
+        "versions": {
+            "109.0": {
+                "image": "browsers/edge:109.0",
+                "tmpfs": { "/tmp": "size=512m" },
+                "mem": "512m",
+                "env": [
+                    "LANG=ru_RU.UTF-8",
+                    "LANGUAGE=ru:en",
+                    "LC_ALL=ru_RU.UTF-8"
+                ],
+                "port": "4444",
+                "path": "/wd/hub"
+            }
+        },
+        "selenoid:options": {
+            "screenResolution": "1920x1080x24"
+        }
+    }
+}
